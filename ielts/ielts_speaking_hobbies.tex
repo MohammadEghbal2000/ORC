@@ -1,0 +1,415 @@
+% =====================================================================
+%  IELTS Speaking Mock Pack -- Two Mock Tests on Hobbies
+%  Speaking only (Parts 1-3) + examiner toolkit
+%  Compile with: pdflatex ielts_speaking_hobbies.tex   (run twice for page refs)
+% =====================================================================
+\documentclass[10pt,a4paper]{article}
+
+% ---------- Page & fonts ---------------------------------------------
+\usepackage[a4paper,top=16mm,bottom=16mm,left=15mm,right=15mm,
+            headheight=14pt,headsep=5mm,footskip=8mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}          % Linux Libertine body, Biolinum sans
+\usepackage[scaled=0.95]{roboto}% alternative sans (not default)
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage{microtype}
+\usepackage{fontawesome5}
+
+% ---------- Graphics & boxes -----------------------------------------
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,plotmarks}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amssymb}
+
+% ---------- Palette --------------------------------------------------
+\definecolor{navy}{HTML}{16324F}
+\definecolor{teal}{HTML}{127C82}
+\definecolor{coral}{HTML}{E0704A}
+\definecolor{gold}{HTML}{E3A72F}
+\definecolor{plum}{HTML}{7A4E8C}
+\definecolor{ink}{HTML}{22272E}
+\definecolor{mist}{HTML}{EEF3F7}
+\definecolor{sand}{HTML}{FBF5EA}
+\definecolor{rule}{HTML}{C9D3DD}
+\color{ink}
+
+% ---------- Header / footer ------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\sffamily\footnotesize\color{navy!70}\textbf{IELTS Speaking} \,·\, Mock Pack}
+\fancyhead[R]{\sffamily\footnotesize\color{navy!70}Speaking \,·\, Topic: Hobbies \,·\, Band 7--9 Practice}
+\fancyfoot[L]{\sffamily\scriptsize\color{navy!55}Speaking Module \,·\, 11--14 minutes per test}
+\fancyfoot[R]{\sffamily\scriptsize\color{navy!55}Page \thepage\ of \pageref{LastPage}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist{nosep,leftmargin=*}
+\raggedcolumns
+
+% ---------- Components -----------------------------------------------
+% Big title banner for each mock test
+\newcommand{\mockbanner}[3]{%
+  \begin{tcolorbox}[enhanced,colback=navy,colframe=navy,arc=3mm,
+      left=6mm,right=6mm,top=3.2mm,bottom=3.2mm,boxrule=0pt,
+      overlay={\begin{tcbclipinterior}\fill[#3] ([xshift=-40mm]frame.north east) rectangle (frame.south east);\end{tcbclipinterior}
+               \node[font=\sffamily\bfseries\fontsize{30}{30}\selectfont,text=white]
+                 at ([xshift=-20mm]frame.east) {#1};}]
+    {\sffamily\color{white!75}\small\MakeUppercase{Mock Test}\,\,\faClipboardList}\\[1pt]
+    {\sffamily\bfseries\color{white}\Large #2}\\[1pt]
+    {\sffamily\color{white!80}\footnotesize Face-to-face interview \,·\, Speaking only \,·\, 11--14 minutes \,·\, Topic: Hobbies}
+  \end{tcolorbox}}
+
+% Section heading chip
+\newcommand{\sect}[3]{%
+  \par\smallskip
+  \begin{tikzpicture}[baseline=(t.base)]
+    \node[fill=#1,text=white,rounded corners=1.6mm,inner xsep=2.4mm,inner ysep=1.3mm,
+          font=\sffamily\bfseries\small] (t) {#2\;\;#3};
+  \end{tikzpicture}\hspace{2mm}{\color{#1!60}\leaders\hrule height 0.6pt\hfill\kern0pt}\par\smallskip}
+
+% Task box
+\newtcolorbox{taskbox}[2][]{enhanced,colback=mist,colframe=#2,boxrule=0.6pt,
+  leftrule=3pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,
+  fontupper=\small,#1}
+
+% Instruction line
+\newcommand{\instr}[1]{{\sffamily\footnotesize\color{navy!80}#1}\par}
+
+% Cue card
+\newtcolorbox{cuecard}[1][]{enhanced,colback=sand,colframe=gold,boxrule=0.8pt,
+  arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm,fontupper=\small,
+  borderline={0.4pt}{1.2mm}{gold!60,dashed},#1}
+
+% Tip box
+\newtcolorbox{tipbox}[2][]{enhanced,colback=white,colframe=#2,boxrule=0.6pt,
+  arc=2mm,left=2.5mm,right=2.5mm,top=1.5mm,bottom=1.5mm,fontupper=\footnotesize,
+  title={\sffamily\bfseries\footnotesize #1},coltitle=white,colbacktitle=#2,
+  attach boxed title to top left={xshift=3mm,yshift=-2mm},
+  boxed title style={arc=1mm,boxrule=0pt}}
+
+\DeclareRobustCommand{\qnum}[2]{\tikz[baseline=-0.6ex]\node[circle,fill=#1,text=white,
+  inner sep=0pt,minimum size=4mm,font=\sffamily\bfseries\scriptsize]{#2};}
+
+\newcommand{\cbox}{\raisebox{-0.2ex}{\tikz\draw[navy,line width=0.6pt,rounded corners=0.6pt] (0,0) rectangle (2.6mm,2.6mm);}}
+
+% =====================================================================
+% Ruled note lines for Part 2 preparation
+\newcommand{\notelines}[1]{\foreach \i in {1,...,#1}{\par\vspace{4.2mm}{\color{rule}\hrule height 0.4pt}}}
+
+% Part heading inside a page
+\newcommand{\parthead}[3]{\textbf{\sffamily\small\color{#1}#2} {\footnotesize(#3)}\par}
+
+% Frame label
+\newcommand{\frametag}[2]{{\sffamily\bfseries\scriptsize\color{#1}\MakeUppercase{#2}}\par\vspace{1pt}}
+
+% Phrase strip at the bottom of each mock
+\newtcolorbox{phrasestrip}[2][]{enhanced,colback=#2!8,colframe=#2!8,boxrule=0pt,arc=2mm,
+  left=3mm,right=3mm,top=1.8mm,bottom=1.8mm,fontupper=\footnotesize,#1}
+
+% =====================================================================
+\begin{document}
+% =====================================================================
+
+% ------------------------------ PAGE 1 -------------------------------
+\mockbanner{01}{Hobbies \& Free Time}{coral}
+
+\sect{coral}{\faCommentDots}{PART 1 \,·\, Introduction \& interview \,·\, 4--5 minutes}
+\instr{The examiner asks about familiar topics. Aim for 2--3 sentences per answer.}
+\begin{multicols}{2}
+\frametag{coral}{Frame A \,--\, Hobbies}
+\begin{enumerate}[before=\raggedright,label=\qnum{coral}{\arabic*},leftmargin=6mm,itemsep=2pt]\small
+  \item Do you have a hobby? What is it?
+  \item When did you first become interested in it?
+  \item Do you prefer hobbies you can do alone or with other people?
+  \item Is there a hobby you would like to take up in the future?
+\end{enumerate}
+\columnbreak
+\frametag{coral}{Frame B \,--\, Weekends}
+\begin{enumerate}[before=\raggedright,label=\qnum{coral}{\arabic*},leftmargin=6mm,itemsep=2pt,start=5]\small
+  \item What did you do last weekend?
+  \item Are your weekends usually busy or relaxing?
+  \item Did you have more free time as a child than you do now?
+  \item Do you ever feel guilty about doing nothing in your free time?
+\end{enumerate}
+\end{multicols}
+
+\sect{gold!90!black}{\faIdCard}{PART 2 \,·\, Long turn \,·\, 1 min preparation + 1--2 min talk}
+\begin{multicols}{2}
+\begin{cuecard}
+\textbf{Describe a hobby that you enjoy and have done for a long time.}\par\smallskip
+You should say:
+\begin{itemize}[label=\textcolor{gold}{\faCaretRight},leftmargin=4mm]
+  \item what the hobby is
+  \item when and how you started it
+  \item how much time you spend on it
+\end{itemize}
+and explain why you still enjoy it.
+\end{cuecard}
+\instr{\faQuestionCircle\; Rounding-off question: \textit{Do your friends or family share this hobby?}}
+\columnbreak
+\begin{tcolorbox}[enhanced,colback=white,colframe=rule,boxrule=0.5pt,arc=2mm,
+    left=3mm,right=3mm,top=1.5mm,bottom=2mm,fontupper=\footnotesize]
+{\sffamily\bfseries\color{navy}\faPen\; Your 1-minute notes} {\color{navy!60}(key words only)}
+\notelines{7}
+\end{tcolorbox}
+\end{multicols}
+
+\sect{teal}{\faComments}{PART 3 \,·\, Two-way discussion \,·\, 4--5 minutes}
+\instr{Abstract questions linked to Part 2. Give opinions, reasons, comparisons and speculation.}
+\begin{multicols}{2}
+\frametag{teal}{Theme 1 \,--\, Hobbies and society}
+\begin{enumerate}[before=\raggedright,label=\qnum{teal}{\arabic*},leftmargin=6mm,itemsep=2pt]\small
+  \item Why do you think some people have no hobbies at all?
+  \item How have popular hobbies changed compared with your parents' generation?
+  \item Should employers encourage their staff to have hobbies? Why?
+\end{enumerate}
+\columnbreak
+\frametag{teal}{Theme 2 \,--\, Hobbies and money}
+\begin{enumerate}[before=\raggedright,label=\qnum{teal}{\arabic*},leftmargin=6mm,itemsep=2pt,start=4]\small
+  \item Is it a good idea to turn a hobby into a job?
+  \item Why are some hobbies, like golf or sailing, so expensive?
+  \item Should governments pay for free public facilities such as parks and sports centres?
+\end{enumerate}
+\end{multicols}
+
+
+\sect{navy}{\faStar}{MODEL ANSWERS \,·\, Band 8 level}
+\begin{multicols}{2}
+\raggedcolumns
+\begin{tipbox}[Part 1, Q3 \,--\, alone or with others?]{coral}
+\itshape Honestly, it depends on my mood. After a long day in the lab I'd rather unwind on my own,
+maybe with a novel, but at weekends I'm much more sociable, so I tend to go for team activities
+like five-a-side football.
+\end{tipbox}
+\begin{tipbox}[Part 1, Q8 \,--\, feeling guilty?]{coral}
+\itshape Occasionally, yes. As a postgraduate student there's always another paper to read, so
+switching off doesn't come naturally. That said, I've learnt that a lazy Sunday actually makes me
+far more productive on Monday.
+\end{tipbox}
+\columnbreak
+\begin{tipbox}[Part 3, Q4 \,--\, turning a hobby into a job]{teal}
+\itshape I think it's a double-edged sword. On the one hand, you'd be doing something you genuinely
+love, which is a huge motivation. On the other hand, once there's pressure to earn money from it,
+the activity can stop being an escape and start feeling like a chore. So I'd say it works best for
+people who can keep a clear boundary between the two, perhaps by keeping one small part of the
+hobby purely for fun.
+\end{tipbox}
+\end{multicols}
+
+\vfill
+\begin{phrasestrip}{coral}
+{\sffamily\bfseries\color{coral!80!black}\faMagic\; Try to use in this mock:}\;
+\textit{take up} \,·\, \textit{get hooked on} \,·\, \textit{unwind after a long day} \,·\,
+\textit{a great outlet for stress} \,·\, \textit{I've been into it since\ldots} \,·\,
+\textit{lose track of time} \,·\, \textit{it's not everyone's cup of tea}
+\end{phrasestrip}
+
+\newpage
+% ------------------------------ PAGE 2 -------------------------------
+\mockbanner{02}{Games, Strategy \& Creative Hobbies}{teal}
+
+\sect{teal}{\faCommentDots}{PART 1 \,·\, Introduction \& interview \,·\, 4--5 minutes}
+\instr{The examiner asks about familiar topics. Aim for 2--3 sentences per answer.}
+\begin{multicols}{2}
+\frametag{teal}{Frame A \,--\, Games}
+\begin{enumerate}[before=\raggedright,label=\qnum{teal}{\arabic*},leftmargin=6mm,itemsep=2pt]\small
+  \item Did you play board games or card games as a child?
+  \item Do you prefer video games or traditional games? Why?
+  \item Do you like games that involve luck or games that involve skill?
+  \item Do you think playing games is a waste of time for adults?
+\end{enumerate}
+\columnbreak
+\frametag{teal}{Frame B \,--\, Creativity}
+\begin{enumerate}[before=\raggedright,label=\qnum{teal}{\arabic*},leftmargin=6mm,itemsep=2pt,start=5]\small
+  \item Do you consider yourself a creative person?
+  \item Have you ever made something by hand, such as a painting or a model?
+  \item Would you like to learn a musical instrument?
+  \item Do you share things you create on social media?
+\end{enumerate}
+\end{multicols}
+
+\sect{gold!90!black}{\faIdCard}{PART 2 \,·\, Long turn \,·\, 1 min preparation + 1--2 min talk}
+\begin{multicols}{2}
+\begin{cuecard}
+\textbf{Describe a game or activity you enjoy that involves strategy or working with other people.}\par\smallskip
+You should say:
+\begin{itemize}[label=\textcolor{gold}{\faCaretRight},leftmargin=4mm]
+  \item what the game or activity is
+  \item who you usually do it with
+  \item what skills it requires
+\end{itemize}
+and explain what it has taught you.
+\end{cuecard}
+\instr{\faQuestionCircle\; Rounding-off question: \textit{Are you usually the winner?}}
+\columnbreak
+\begin{tcolorbox}[enhanced,colback=white,colframe=rule,boxrule=0.5pt,arc=2mm,
+    left=3mm,right=3mm,top=1.5mm,bottom=2mm,fontupper=\footnotesize]
+{\sffamily\bfseries\color{navy}\faPen\; Your 1-minute notes} {\color{navy!60}(key words only)}
+\notelines{7}
+\end{tcolorbox}
+\end{multicols}
+
+\sect{coral}{\faComments}{PART 3 \,·\, Two-way discussion \,·\, 4--5 minutes}
+\instr{Abstract questions linked to Part 2. Give opinions, reasons, comparisons and speculation.}
+\begin{multicols}{2}
+\frametag{coral}{Theme 1 \,--\, Competition and cooperation}
+\begin{enumerate}[before=\raggedright,label=\qnum{coral}{\arabic*},leftmargin=6mm,itemsep=2pt]\small
+  \item What can children learn from games that require negotiation or teamwork?
+  \item Is competition in hobbies healthy, or does it spoil the fun?
+  \item Why do some people become so emotional when they lose a game?
+\end{enumerate}
+\columnbreak
+\frametag{coral}{Theme 2 \,--\, Technology and leisure}
+\begin{enumerate}[before=\raggedright,label=\qnum{coral}{\arabic*},leftmargin=6mm,itemsep=2pt,start=4]\small
+  \item How has the internet changed the way people pursue their hobbies?
+  \item Now that computers can beat humans at chess, is the game less meaningful?
+  \item Will people have more or less free time in the future? Why?
+\end{enumerate}
+\end{multicols}
+
+
+\sect{navy}{\faStar}{MODEL ANSWERS \,·\, Band 8 level}
+\begin{multicols}{2}
+\raggedcolumns
+\begin{tipbox}[Part 1, Q3 \,--\, luck or skill?]{teal}
+\itshape Definitely skill. I find games of pure chance a bit pointless, because nothing you decide
+really matters. With something like chess, if I lose, I know exactly whose fault it is: mine!
+\end{tipbox}
+\begin{tipbox}[Part 1, Q7 \,--\, a musical instrument?]{teal}
+\itshape I'd love to, actually. I've always fancied learning the piano, but I suspect it has quite
+a steep learning curve, so I keep putting it off until I have more free time.
+\end{tipbox}
+\columnbreak
+\begin{tipbox}[Part 3, Q1 \,--\, learning from negotiation games]{coral}
+\itshape Quite a lot, I'd argue. Games like \textup{Catan} or \textup{Diplomacy} force children to
+strike deals, make concessions and work out what the other players really want, which are exactly
+the skills they'll need in the workplace. What's more, because it's only a game, they can
+experiment with different strategies, and even lose badly, without any real consequences, so
+it's a safe way to learn how cooperation and competition fit together.
+\end{tipbox}
+\end{multicols}
+
+\vfill
+\begin{phrasestrip}{teal}
+{\sffamily\bfseries\color{teal!80!black}\faMagic\; Try to use in this mock:}\;
+\textit{think a few moves ahead} \,·\, \textit{a sore loser} \,·\, \textit{strike a deal} \,·\,
+\textit{a friendly rivalry} \,·\, \textit{hands-on} \,·\, \textit{a steep learning curve} \,·\,
+\textit{it brings out my competitive side}
+\end{phrasestrip}
+
+\newpage
+% ------------------------------ PAGE 3 -------------------------------
+\begin{tcolorbox}[enhanced,colback=navy,colframe=navy,arc=3mm,boxrule=0pt,
+    left=6mm,right=6mm,top=3.2mm,bottom=3.2mm,
+    overlay={\begin{tcbclipinterior}\fill[gold] ([xshift=-40mm]frame.north east) rectangle (frame.south east);\end{tcbclipinterior}
+             \node[text=white,font=\fontsize{26}{26}\selectfont] at ([xshift=-20mm]frame.east) {\faToolbox};}]
+  {\sffamily\color{white!75}\small EXAMINER'S TOOLKIT\,\,\faLightbulb}\\[1pt]
+  {\sffamily\bfseries\color{white}\Large Speaking Criteria, Model Answer \& Hobby Language}\\[1pt]
+  {\sffamily\color{white!80}\footnotesize Record yourself, listen back, then mark each criterion honestly.}
+\end{tcolorbox}
+
+\sect{navy}{\faBalanceScale}{HOW YOU ARE MARKED \,·\, Speaking (each criterion = 25\%)}
+
+{\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash\leavevmode\color{navy}\sffamily\bfseries}p{34mm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\toprule
+\rowcolor{mist}Criterion & \sffamily\bfseries Band 7 sounds like\ldots & \sffamily\bfseries Band 8--9 sounds like\ldots\\
+\midrule
+Fluency \& Coherence & Speaks at length; some hesitation while searching for language & Hesitation is about ideas, not words; fully developed answers\\
+Lexical Resource & Some idioms and less common words, with a few slips & Precise, natural vocabulary and idiomatic language\\
+Grammatical Range \& Accuracy & Mix of complex structures; frequent error-free sentences & Wide range used naturally; errors are rare\\
+Pronunciation & Generally clear; some features of stress and intonation & Effortless to understand; natural rhythm and intonation\\
+\bottomrule
+\end{tabularx}}
+
+\vspace{1mm}
+\begin{tipbox}[\faStar\; Model Part 2 answer (Band 8 level) \,--\, Mock 1 cue card]{coral}
+\itshape The hobby I'd like to talk about is cycling, which I've been into since I was about twelve.
+It started quite by chance: my uncle gave me his old mountain bike, and I got hooked on exploring the hills
+around my hometown. These days I'm doing a Master's degree, so I can't ride as often as I'd like, but I
+still manage a long ride most Saturdays, usually around forty kilometres.
+Why do I still enjoy it? Mainly because it's such a great outlet for stress. When I'm cycling, I can't
+check my phone or think about deadlines, so it forces me to switch off. It has also taught me patience:
+on a steep climb, there's no shortcut, you simply have to keep going. To be honest, I can't imagine giving it up.
+\end{tipbox}
+
+\begin{multicols}{2}
+\raggedcolumns
+\begin{tipbox}[\faPuzzlePiece\; Hobby language bank]{navy}
+\textbf{Starting:} take up, get into, pick up (a skill), give sth a go\\
+\textbf{Liking:} be keen on, be passionate about, get a kick out of\\
+\textbf{Stopping:} give up, lose interest in, drift away from\\
+\textbf{Types:} outdoor pursuits, arts and crafts, team sports, collecting\\
+\textbf{Benefits:} recharge my batteries, broaden my horizons, a sense of achievement
+\end{tipbox}
+
+\begin{tipbox}[\faLayerGroup\; Extend every answer: A\,--\,R\,--\,E]{teal}
+\textbf{A}nswer \,$\rightarrow$\, \textbf{R}eason \,$\rightarrow$\, \textbf{E}xample.\par
+\itshape ``Yes, I prefer team hobbies, \textup{(A)} because I get bored easily on my own. \textup{(R)}
+For example, I play five-a-side football with colleagues every Thursday.'' \textup{(E)}
+\end{tipbox}
+
+\columnbreak
+\begin{tipbox}[\faClock\; Buying time naturally]{plum}
+\textit{That's an interesting question; I've never really thought about it.}\\
+\textit{Let me think\ldots\ I'd probably say that\ldots}\\
+\textit{Well, it depends on what you mean by\ldots}\\
+\textit{Off the top of my head, I'd say\ldots}
+\end{tipbox}
+
+\begin{tipbox}[\faExclamationTriangle\; Avoid these Band-6 habits]{coral}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=4mm]
+  \item ``My hobby is \emph{listening music}'' \,$\rightarrow$\, listening \textbf{to} music.
+  \item Overusing ``interesting'' and ``fun''; try \emph{absorbing, rewarding}.
+  \item Stopping after 1 minute in Part 2; keep talking until stopped.
+  \item Mixing tenses: use present perfect for \emph{since/for} (\emph{I've played for 5 years}).
+\end{enumerate}
+\end{tipbox}
+\end{multicols}
+
+
+\begin{multicols}{2}
+\raggedcolumns
+\begin{tipbox}[\faVolumeUp\; Pronunciation focus \,--\, word stress]{plum}
+\textbf{HOB}·by \,·\, \textbf{LEI}·sure \,·\, en·\textbf{THU}·si·ast \,·\, pho·\textbf{TO}·gra·phy
+\,·\, \textbf{PHO}·to·graph \,·\, re·\textbf{LAX}·ing \,·\, \textbf{STRA}·te·gy \,·\,
+stra·\textbf{TE}·gic \,·\, com·\textbf{PE}·ti·tive\par\smallskip
+\textit{Tip: stress shifts in word families, e.g.\ \textbf{PHO}tograph $\rightarrow$
+pho\textbf{TO}grapher $\rightarrow$ photo\textbf{GRA}phic.}
+\end{tipbox}
+\columnbreak
+\begin{tipbox}[\faProjectDiagram\; Part 2 one-minute plan]{navy}
+Write 4--5 key words, one per prompt, then add a \textbf{story} and a \textbf{feeling}:\par\smallskip
+\begin{tabular}{@{}ll@{}}
+\textbf{What?} & cycling, mountain bike\\
+\textbf{When/how?} & age 12, uncle's gift\\
+\textbf{How much?} & Saturdays, 40\,km\\
+\textbf{Why?} & stress outlet, patience\\
+\end{tabular}
+\end{tipbox}
+\end{multicols}
+
+\vfill
+\begin{tcolorbox}[enhanced,colback=sand,colframe=gold,boxrule=0.5pt,arc=2mm,
+    left=3mm,right=3mm,top=1.5mm,bottom=1.5mm,fontupper=\footnotesize]
+\textbf{\sffamily\color{navy}\faRoute\; Score tracker}\hfill
+\begin{tabular}{l*{5}{c}}
+ & \sffamily FC & \sffamily LR & \sffamily GRA & \sffamily P & \sffamily \textbf{Overall}\\
+\sffamily Mock 1 & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{11mm}{0.4pt}\\[2pt]
+\sffamily Mock 2 & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{9mm}{0.4pt} & \rule{11mm}{0.4pt}\\
+\end{tabular}
+\end{tcolorbox}
+
+\end{document}
